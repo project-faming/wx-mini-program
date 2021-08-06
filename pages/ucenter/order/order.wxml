@@ -1,0 +1,73 @@
+<view class="container">
+  <view class="orders-switch">
+    <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="switchTab" data-index='0'>
+      <view class="txt">全部</view>
+    </view>
+    <view class="item {{ showType == 1 ? 'active' : ''}}" bindtap="switchTab" data-index='1'>
+      <view class="txt">待付款</view>
+    </view>
+    <view class="item {{ showType == 2 ? 'active' : ''}}" bindtap="switchTab" data-index='2'>
+      <view class="txt">待发货</view>
+    </view>
+    <view class="item {{ showType == 3 ? 'active' : ''}}" bindtap="switchTab" data-index='3'>
+      <view class="txt">待收货</view>
+    </view>
+    <view class="item {{ showType == 4 ? 'active' : ''}}" bindtap="switchTab" data-index='4'>
+      <view class="txt">待评价</view>
+    </view>
+  </view>
+  <view class="no-order" wx:if="{{orderList.length <= 0}}">
+    <view class="c">
+      <image src="/static/images/noCart.png" />
+    </view>
+  </view>
+
+  <view class="orders">
+    <view class="order" wx:for="{{orderList}}" wx:key="id">
+      <navigator url="../{{item.freightType==1?'fetchOrderDetail/fetchOrderDetail':'orderDetail/orderDetail'}}?id={{item.id}}"  class="h">
+        <view class="l">订单编号：{{item.orderSn}}</view>
+        <view class="r">{{item.orderStatusText}}</view>
+      </navigator>
+      <navigator url="../{{item.freightType==1?'fetchOrderDetail/fetchOrderDetail':'orderDetail/orderDetail'}}?id={{item.id}}" class="goods">
+        <view class="item" wx:for="{{item.goodsList}}" wx:key="id" wx:for-item="gitem">
+          <view class="img">
+            <image src="{{gitem.picUrl}}"></image>
+          </view>
+          <view class="info">
+            <view class="t">
+              <text class="name">{{gitem.goodsName}}</text>
+            </view>
+            <view class="t">
+              <text class="attr">{{gitem.specifications}}</text>
+              <text class="number">共 {{gitem.number}} 件商品</text>
+            </view>
+            <view class="price">￥{{gitem.price}}</view>
+            <view class="btn active" wx:if="{{item.handleOption.comment && (gitem.comment == 0)}}" data-oid="{{gitem.orderId}}" data-gid="{{gitem.goodsId}}" catchtap="toCommentPostPage">
+              去评价
+            </view>
+            <view class="btn active" wx:if="{{item.handleOption.rebuy}}" data-index="{{gitem.goodsId}}" catchtap="toGoodsDetailPage">
+              再次购买
+            </view>
+            <view class="btn active" wx:if="{{gitem.refundId!=null}}" data-index="{{gitem.refundId}}" catchtap="toRefundDetailPage">
+              退货查看
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <view class="b">
+        <view class="l">实付：
+          <text class="cost">￥{{item.actualPrice}}</text>
+        </view>
+        <view class="r">
+        <view class="btn active" data-index="{{item.id}}" bindtap="cancelOrder" wx:if="{{item.handleOption.cancel}}">取消订单</view>
+        <view class="btn active" data-index="{{item.id}}" bindtap="payOrder" wx:if="{{item.handleOption.pay}}">去付款</view>
+        <view class="btn active gift"  data-index="{{item.id}}" bindtap="giftSend" wx:if="{{item.freightType==1 && item.handleOption.giftSend}}">赠送</view>
+        <view class="btn active" data-index="{{item.id}}" bindtap="detailExpress" wx:if="{{item.freightType!=1 && item.handleOption.confirm}}">查看物流</view>
+        <view class="btn active" data-index="{{item.id}}" bindtap="confirmOrder" wx:if="{{item.handleOption.confirm}}">确认{{item.freightType!=1?'收货':'提货'}}</view>
+        <view class="btn active" data-index="{{item.id}}" bindtap="deleteOrder" wx:if="{{item.handleOption.delete}}">删除订单</view>
+        <view class="btn active" data-index="{{item.id}}" bindtap="refundOrder" wx:if="{{item.handleOption.refund}}">申请退款</view>
+      </view>
+      </view>
+    </view>
+  </view>
+</view>

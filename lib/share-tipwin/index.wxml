@@ -1,0 +1,10 @@
+<view class='coupon-window}}'>
+   <view class='iconfont icon-guanbi3' bindtap='close'></view>
+   <view class='couponWinList'>
+     <view class='msgtip'>分享赚</view>
+     <view class='money'>￥{{brokeragePrice}}</view>
+   </view>
+   <view class='lid'>
+      <view hover-class='none' bindtap='sharedFn' class='bnt font-color'>立即分享</view>
+   </view>
+</view>

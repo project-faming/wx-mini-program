@@ -1,0 +1,61 @@
+/* pages/GroupworkDetail/GroupworkDetail.wxss */
+.imgs_view{
+    width: 100%;
+}
+.imgs_view .img_top{
+    width: 100%;
+}
+.groupwork_detailes .body_view_out{
+    padding: 20rpx;
+}
+.body_view_out .commiten_name{
+    font-size: 32rpx;
+    color: #333333;
+    font-weight: bold;
+}
+.title_mint{
+    margin-top: 10rpx;
+    font-size: 28rpx;
+    overflow: hidden;
+}
+.title_mint .textleft_name{
+    color: #666666;
+    width: 160rpx;
+    display: block;
+    float: left;
+}
+.icon_mni{
+    font-size: 24rpx;
+    color: #c02021;
+    font-weight: bold;
+}
+.many_clor{
+    color: #c02021;
+    float: left;
+    font-weight: bold;
+}
+.title_mint .right_text{
+    color: #666666;
+}
+.buttonrightpost{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #85c43f;
+    text-align: center;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: #ffffff;
+    font-size: 28rpx;
+}
+.buttonoks{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #cccccc;
+    text-align: center;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: #ffffff;
+    font-size: 28rpx;
+}

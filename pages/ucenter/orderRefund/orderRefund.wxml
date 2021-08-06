@@ -1,0 +1,50 @@
+<view class="container">
+  <view class="order-info">
+      <view class="t">
+        <text class="lable">收货人：</text>
+        <text class="value">{{orderInfo.consignee}} {{orderInfo.mobile}}</text>
+      </view>
+      <view class="b">{{orderInfo.address}}</view>
+  </view>
+  
+  <view class="order-goods">
+    <view class="h">
+      <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="checkedAll">
+        全选
+      </view>
+      <view class="label">选择退货的商品规格/数量</view>
+      <view class="status">{{orderInfo.orderStatusText}}</view>
+    </view>
+    <view class="goods">
+      <view class="item" wx:for="{{orderGoods}}" wx:key="id">
+        <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="checkedItem" data-productId="{{item.productId}}">
+        </view>
+        <view class="img">
+          <image src="{{item.picUrl}}"></image>
+        </view>
+        <view class="info">
+          <view class="t">
+            <text class="name">{{item.goodsName}}</text>
+          </view>
+          <view class="t">
+            <text class="attr">{{item.specifications}}</text>
+            <text class="number">x{{item.number}}</text>
+          </view>
+          <view class="price">￥{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+    <view class="order-bottom">
+      <view class="pay-fee">
+        <text class="label">退款总额：</text>
+        <text class="txt">￥{{refundGoodsAmt}}</text>
+      </view>
+      <view class="input-box">
+        <textarea class="content" focus="false" bindinput="bindInputValue" maxlength="160" placeholder="请联系客服确认后,录入退货(退款)申请理由,点击申请..." cursor-spacing="140"/>
+        <text class="count">{{160 - refundReason.length}}</text>
+      </view>
+    </view>
+    <button class='refundApplyBnt' bindtap="refundApply">{{orderInfo.orderStatusText == '已发货'? '退货申请':'退款申请'}}</button>
+</view>

@@ -1,0 +1,100 @@
+<view class="container">
+  <view class="order-info">
+      <view class="t">
+        <text class="lable">订单编号：</text>
+        <text class="value">{{orderInfo.orderSn}}</text>
+      </view>
+      <view class="t">
+        <text class="lable">下单时间：</text>
+        <text class="value">{{orderInfo.addTime}}</text>
+      </view>
+      <view class="t">
+        <text class="lable">联系人：</text>
+        <text class="value">{{orderInfo.consignee}} {{orderInfo.mobile}}</text>
+      </view>
+      <view class="about-item">
+        <view class="item-left">
+          <label class="jhx_f12">地址: </label>
+          <text>{{brand.address}}</text> 
+        </view>
+        <view class="item-right" bindtap="showLocation" wx:if="{{brand.longitude != 0 && brand.latitude != 0}}">
+          <image src="/static/images/ico-addr.png" class="right-icon"></image>
+        </view>
+      </view>
+      <view class="about-item">
+        <view class="item-left">
+          <label class="jhx_f12">取货时间: </label>
+          <text>{{brand.fetchTimeRules}}</text> 
+        </view>
+      </view>
+  </view>
+  
+
+  <view class="order-goods">
+    <view class="h">
+      <view class="label">商品信息</view>
+      <view class="status">{{orderInfo.orderStatusText}}</view>
+    </view>
+    <view class="goods">
+      <view class="item" wx:for="{{orderGoods}}" wx:key="id">
+        <view class="img">
+          <image src="{{item.picUrl}}"></image>
+        </view>
+        <view class="info">
+          <view class="t">
+            <text class="name">{{item.goodsName}}</text>
+          </view>
+          <view class="t">
+            <text class="attr">{{item.specifications}}</text>
+            <text class="number">x{{item.number}}</text>
+          </view>
+          <view class="price">￥{{item.price}}</view>
+          <view class="btn active" wx:if="{{handleOption.comment && (item.comment == 0)}}">
+            <navigator url="../../commentPost/commentPost?orderId={{item.orderId}}&&valueId={{item.goodsId}}&type=0">去评价</navigator>
+          </view>
+          <view class="btn active" wx:if="{{handleOption.rebuy}}">
+            <navigator url="../../goods/goods?id={{item.goodsId}}">再次购买</navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="order-bottom">
+      <view class="total">
+        <view class="t">
+          <text class="label">商品合计：</text>
+          <text class="txt">￥{{orderInfo.goodsPrice}}</text>
+        </view>
+        <view class="t">
+          <text class="label">运费：</text>
+          <text class="txt">￥{{orderInfo.freightPrice}}</text>
+        </view>
+        <view class="t">
+          <text class="label">优惠减免：</text>
+          <text class="txt">- ￥{{orderInfo.discountPrice}}</text>
+        </view>
+      </view>
+      <view class="pay-fee">
+        <text class="label">实付：</text>
+        <text class="txt">￥{{orderInfo.actualPrice}}</text>
+      </view>
+
+    </view>
+  </view>
+  <view class="order-goods" wx:if="{{isShared==1 && !orderInfo.handleOption.giftRecive}}">
+    <view class="h">
+      <view class="label">提示{{createUserName?': '+createUserName+'【发起】':''}}{{receiveUserName?'---------->'+receiveUserName+'【收取】':''}}</view>
+    </view>
+    <view class="fetch-msg">礼物已被收取或发起者已提货</view>
+  </view>
+
+  <view class="order-goods" wx:else>
+    <view class="h">
+      <view class="label">取货码</view>
+    </view>
+    <view class="fetch-code" >{{isShared==1 ? "******" : orderInfo.fetchCode}} </view>
+  </view>
+
+  <button class='giftBnt' wx:if="{{isShared==1 && orderInfo.handleOption.giftRecive}}" bindtap="giftOrderReceive">收取礼物</button>
+  <button class='giftBnt' wx:if="{{isShared==0 && orderInfo.handleOption.giftSend}}" open-type='share'>赠送给好友</button>
+</view>

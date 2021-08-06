@@ -1,0 +1,23 @@
+<!--pages/choicestore/choicestore.wxml-->
+<view class="choicestoreclass">
+    <view class="title_back">当前位置</view>
+    <view class="store_list">
+        <view class="storeview_list_lints">
+            <view class="left_views">
+                <view class="name_title">{{onchoicesname}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="title_back">附近门店</view>
+    <view class="store_list">
+        <view class="storeview_list" wx:for="{{choicestoreData}}" wx:for-index="index" wx:for-item="item" wx:key="index" data-item="{{item}}" bindtap="storeclick">
+            <view class="left_views">
+                <view class="name_title">{{item.name}}</view>
+                <view class="addres_text">{{item.address}}</view>
+            </view>
+            <view class="right_jul">
+                距您{{item.distanceMeter}}
+            </view>
+        </view>
+    </view>
+</view>

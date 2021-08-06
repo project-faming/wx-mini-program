@@ -1,0 +1,37 @@
+<view class="comments">
+  <view class="h">
+    <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="switchTab">
+      <view class="txt">全部({{allCount}})</view>
+    </view>
+    <view class="item {{ showType == 0 ? '' : 'active'}}" bindtap="switchTab">
+      <view class="txt">有图({{hasPicCount}})</view>
+    </view>
+  </view>
+  <view class="b">
+    <view class="item" wx:for="{{comments}}" wx:key="id">
+      <view class="info">
+        <view class="user">
+          <image src="{{item.userInfo.avatarUrl}}"></image>
+          <text class="comment-user">{{item.userInfo.nickName}}</text>
+          <view class="star">
+            <block wx:for="{{stars}}" wx:key="*this" wx:for-item="item">
+              <image src="/static/images/icon_collect_checked.png" bindtap="selectRater" data-star="{{item}}" wx:if="{{item < star}}"></image>
+              <image src="/static/images/icon_collect.png" bindtap="selectRater" data-star="{{item}}" wx:else></image>
+            </block>
+          </view>
+        </view>
+        <view class="time">{{item.addTime}}</view>
+      </view>
+      <view class="comment">{{item.content}}</view>
+      <view class="imgs" wx:if="{{item.picList.length > 0}}">
+        <image class="img" wx:for="{{item.picList}}" wx:key="*this" wx:for-item="pitem" src="{{pitem}}"></image>
+      </view>
+      <view class="customer-service" wx:for="{{item.reply}}" wx:for-item="ritem">
+        <image src="{{ritem.commenter.avatar}}"></image>
+        <text class="comment-user">{{ritem.commenter.commenterName}}</text>
+        <view class="u"> 回复 <text class="comment-user">{{ritem.replier.commenterName}}</text>:{{ritem.content}} </view>
+      </view>
+    </view>
+
+  </view>
+</view>

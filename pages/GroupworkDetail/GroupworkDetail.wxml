@@ -1,0 +1,43 @@
+<view class="groupwork_detailes">
+		<view class="imgs_view"> 
+            <image class="img_top" src="{{groupondetail.goodsPic}}" wx:if="{{NOButon === 'OrderType'}}"/>
+            <image class="img_top" src="{{groupondetail.picUrl}}" wx:else/>
+		</view>
+		<view class="body_view_out">
+            <view class="commiten_name">{{groupondetail.goodsName}}</view>
+            <view class="title_mint">
+                <text class="textleft_name">拼团价格：</text>
+                <text class="many_clor"><text class="icon_mni">￥</text>{{groupondetail.discount}}</text>
+            </view>
+            <view class="title_mint">
+                <text class="textleft_name">状态：</text>
+                <text class="right_text" wx:if="{{NOButon === 'OrderType'}}">{{groupondetail.type == 1 ? '未核销':groupondetail.type == 2 ? '已核销':''}}</text>
+                <text class="right_text" wx:else>{{groupondetail.type == 1 ? '进行中':groupondetail.type == 2 ? '已成团':''}}</text>
+            </view>
+            <view class="title_mint" wx:if="{{NOButon === 'OrderType'}}">
+                <text class="textleft_name">核销码：</text>
+                <text class="right_text">{{groupondetail.codeNo}}</text>
+            </view>
+            <view class="title_mint">
+                <text class="textleft_name">团长手机：</text>
+                <text class="right_text" wx:if="{{NOButon === 'OrderType'}}">{{groupondetail.teamMobile}}</text>
+                <text class="right_text" wx:else>{{groupondetail.userPhone}}</text>
+            </view>
+            <view class="title_mint" wx:if="{{NOButon === 'OrderType'}}">
+                <text class="textleft_name">参团时间</text>
+                <text class="right_text">{{groupondetail.addTime}}</text>
+            </view>
+            <view class="title_mint" wx:else>
+                <text class="textleft_name">过期时间：</text>
+                <text class="right_text">{{groupondetail.expireTime}}</text>
+            </view>
+            <view class="title_mint" wx:if="{{NOButon !== 'OrderType'}}">
+                <text class="textleft_name">成团人数：</text>
+                <text class="right_text">{{groupondetail.userDiscountMember}}人/{{groupondetail.discountMember}}人</text>
+            </view>
+        </view>
+        <view>
+            <view  wx:if="{{groupondetail.joinType == 2}}" class="buttonrightpost" bindtap='applyStore'>参与拼团</view>
+            <view  wx:if="{{groupondetail.joinType == 1}}" class="buttonoks" >已参团</view>
+        </view>
+	</view>

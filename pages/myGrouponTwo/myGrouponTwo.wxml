@@ -1,0 +1,48 @@
+<!--pages/myGrouponTwo/myGrouponTwo.wxml-->
+<view>
+    <view class="orders-switch">
+        <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="switchTab" data-index='0'>
+            <view class="txt">我的拼团</view>
+        </view>
+        <view class="item {{ showType == 1 ? 'active' : ''}}" bindtap="switchTab" data-index='1'>
+            <view class="txt">我参与的拼团</view>
+        </view>
+  </view>
+  <view class="order_list_view textonte" wx:if="{{orderList.length == 0}}">
+      暂无数据
+  </view>
+  <view class="order_list_view" wx:else>
+        <view class="order_list" wx:for="{{orderList}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+            <view data-id='{{item.id}}' bindtap="groupworkDe">
+                <view class="order_image">
+                    <image class="imgs" src="{{item.picUrl}}" wx:if="{{showType == 0}}"></image>
+                    <image class="imgs" src="{{item.goodsPic}}" wx:if="{{showType == 1}}"></image>
+                </view>
+                <view class="right_list_text">
+                    <view class="group_name">{{item.goodsName}}</view>
+                    <view class="text_font">
+                        <text class="title_text">拼团价格：</text>
+                        <text class="many_text">
+                            <text class="icon_tex">￥</text>
+                            <text class="many_text_num">{{item.discount}}</text>
+                        </text>
+                    </view>
+                    <view class="text_font" >
+                        <text class="title_text">团长手机：</text>
+                        <text class="status_text">{{showType == 0 ? item.userPhone:showType == 1 ? item.teamMobile:''}}</text>
+                    </view>
+                    <view class="text_font" wx:if="{{showType == 1}}">
+                        <text class="title_text">状态：</text>
+                        <text class="status_text">{{item.type == 1?'未核销':item.type == 2?'已核销':''}}</text>
+                    </view>
+                    <view class="text_font" wx:if="{{showType == 1}}"><text class="title_text">核销码：</text>{{item.codeNo}}</view>
+                    <view class="text_font"  wx:if="{{showType == 0}}"><text class="title_text">进度：</text>{{item.userDiscountMember}}人/{{item.discountMember}}人</view>
+                    <view class="text_font" wx:if="{{showType == 0}}">
+                        <text class="title_text">状态：</text>
+                        <text class="status_text">{{item.type == 1?'进行中':item.type == 2?'已成团':''}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+  </view>
+</view>

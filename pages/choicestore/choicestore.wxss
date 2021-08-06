@@ -1,0 +1,52 @@
+.choicestoreclass{
+
+}
+.title_back{
+    background: #eeeeee;
+    padding: 20rpx;
+    color:#cccccc;
+    font-size: 26rpx;
+}
+.store_list{
+    padding: 20rpx;
+}
+.storeview_list{
+    border-bottom:1px solid #cccccc;
+    padding-bottom:20rpx;
+    margin-bottom: 20rpx;
+    overflow: hidden;
+}
+.storeview_list_lints{
+    overflow: hidden;
+}
+.storeview_list:last-child{
+    border: none;
+}
+.left_views{
+    float: left;
+    width: 70%;
+}
+.name_title{
+    font-size: 28rpx;
+    color: #333333;
+    font-weight: bold;
+    margin-bottom: 10rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.addres_text{
+    font-size: 26rpx;
+    color: #999999;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.right_jul{
+    float: left;
+    width: 30%;
+    font-size: 26rpx;
+    color: #999999;
+    line-height: 80rpx;
+    text-align: right;
+}

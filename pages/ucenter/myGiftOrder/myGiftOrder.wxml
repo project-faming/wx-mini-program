@@ -1,0 +1,39 @@
+<view class="container">
+
+  <view class="orders-switch">
+    <view class="item {{ giftType == 1 ? 'active' : ''}}" bindtap="switchTab" data-index='1'>
+      <view class="txt">我赠送的订单</view>
+    </view>
+    <view class="item {{ giftType == 0 ? 'active' : ''}}" bindtap="switchTab" data-index='0'>
+      <view class="txt">我收到的订单</view>
+    </view>
+  </view>
+  <view class="no-order" wx:if="{{orderList.length <= 0}}">
+    <view class="c">
+      <image src="/static/images/noCart_old.png" />
+      <text>尚未有任何赠送订单</text>
+    </view>
+  </view>
+
+  <view class="orders">
+    <view class="order" open-type="redirect" wx:for="{{orderList}}" wx:key="id">
+      
+      <navigator url="../fetchOrderDetail/fetchOrderDetail?id={{item.id}}&isShared=1" class="h">
+        <view class="l">订单编号：{{item.orderSn}}</view>
+        <view class="r">{{item.orderStatusText}}</view>
+      </navigator>
+      <navigator url="../fetchOrderDetail/fetchOrderDetail?id={{item.id}}&isShared=1" class="goods" wx:for="{{item.goodsList}}" wx:key="id" wx:for-item="gitem">
+        <view class="img">
+          <image src="{{gitem.picUrl}}"></image>
+        </view>
+        <view class="info">
+          <text class="name">{{gitem.goodsName}}</text>
+        </view>
+        <view class="status"></view>
+      </navigator>
+      <view class="b">
+        <view class="l price">实付：￥{{item.actualPrice}}</view>
+      </view>
+    </view>
+  </view>
+</view>

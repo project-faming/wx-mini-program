@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="brand-info">
+    <view class="name">
+      <image class="img" src="{{brand.picUrl}}" background-size="cover"></image>
+      <view class="info-box">
+        <view class="info">
+        </view>
+      </view>
+    </view>
+    <view class="desc">
+      {{brand.desc}}
+    </view>
+  </view>
+
+  <view class="cate-item">
+    <view class="b">
+      <block wx:for="{{goodsList}}" wx:key="id" wx:for-index="iindex" wx:for-item="iitem">
+        <navigator class="item {{iindex % 2 == 0 ? 'item-b' : ''}}" url="../goods/goods?id={{iitem.id}}">
+          <image class="img" src="{{iitem.picUrl}}" background-size="cover"></image>
+          <text class="name">{{iitem.name}}</text>
+          <view class="price">
+            <view class="priceTg jhx_f8">￥{{iitem.retailPrice}}</view>
+            <view class="brokerage" wx:if="{{isAgent && iitem.brokeragePrice>0.01}}">赚￥{{iitem.brokeragePrice}}</view>
+            <view class="brokerage" wx:else>立即购买</view>
+          </view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+</view>

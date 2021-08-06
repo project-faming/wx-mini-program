@@ -1,0 +1,71 @@
+<view class="container">
+  <view class="order-info">
+      <view class="t">
+        <text class="lable">退单编号：</text>
+        <text class="value">{{refundTrace.refundSn}}</text>
+      </view>
+      <view class="t">
+        <text class="lable">申请时间：</text>
+        <text class="value">{{refundTrace.addTime}}</text>
+      </view>
+      <view class="t">
+        <text class="lable">退款状态：</text>
+        <text class="value">{{refundTrace.status == 0 ? '待审批': refundTrace.status == 2 ? '审批拒绝':'审批通过'}}</text>
+      </view>
+      <view class="t">
+        <text class="lable">申请退款总额：</text>
+        <text class="value">￥{{refundTrace.refundApplyAmount}}</text>
+      </view>
+      <view class="t" wx:if="{{refundTrace.status == 1 || refundTrace.status == 3}}">
+        <text class="lable">审批总额：</text>
+        <text class="value">￥{{refundTrace.refundAmount}}</text>
+      </view>
+      <view class="t">
+        <text class="lable">原订单编号：</text>
+        <text class="value">{{orderInfo.orderSn}}</text>
+      </view>
+      <view class="t">
+        <text class="lable">收货人：</text>
+        <text class="value">{{orderInfo.consignee}} {{orderInfo.mobile}}</text>
+      </view>
+  </view>
+  
+  <view class="order-goods">
+    <view class="h">
+      <view class="label">退货商品</view>
+      <view class="status">{{refundTrace.status == 0 ? '待审批': refundTrace.status == 2 ? '审批拒绝':'审批通过'}}</view>
+    </view>
+    <view class="goods">
+      <view class="item" wx:for="{{orderGoods}}" wx:key="id">
+        <view class="img">
+          <image src="{{item.picUrl}}"></image>
+        </view>
+        <view class="info">
+          <view class="t">
+            <text class="name">{{item.goodsName}}</text>
+          </view>
+          <view class="t">
+            <text class="attr">{{item.specifications}}</text>
+            <text class="number">x{{item.number}}</text>
+          </view>
+          <view class="price">￥{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="order-bottom">
+      <view class="b">退款原因：{{refundTrace.refundReason}}</view>
+      <view class="b" wx:if="{{refundTrace.status != 0}}">审批信息：{{refundTrace.approveMsg}}</view>
+      <view class="input-box">
+        <textarea class="content" focus="false" value="{{refundTrace.freightMsg}}" bindinput="bindInputValue" maxlength="160" placeholder="{{orderInfo.orderStatusText == '已发货'? '备注物流信息...':'添加补充说明...'}}" cursor-spacing="140"/>
+      </view>
+      <view class="b">
+        <view class="r">
+          <view class="btn active" data-index="{{item.id}}" bindtap="refundUndo" wx:if="{{refundTrace.status == 0 || refundTrace.status == 2}}">撤销退货</view>
+          <view class="btn active" data-index="{{item.id}}" bindtap="addFreightMsg" wx:if="{{refundTrace.status != 3}}">{{orderInfo.orderStatusText == '已发货'? '备注物流':'添加补充'}}</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>

@@ -1,0 +1,22 @@
+<view class="container">
+  <scroll-view class="groupon-list" scroll-y="true" scroll-top="{{scrollTop}}">
+    <view class="group_view_item">
+      <view class="group_item" wx:for="{{grouponList}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+        <navigator url="/pages/GroupworkDetail/GroupworkDetail?id={{item.id}}">
+          <view class="group_img_top">
+            <image  class="imgspicurl" src="{{item.picUrl}}"></image>
+          </view>
+          <view class="text_view_namr">
+            <text class="name">{{item.goodsName}}</text>
+            <text class="participants_name">已参与人数：{{item.userDiscountMember}}人/{{item.discountMember}}人</text>
+            <text class="participants_name">截止时间：{{item.expireTime}}</text>
+          </view>
+          <view class="brokerage_view">
+            <text class="many_num"><text class="icon_text">￥</text>{{item.goodsPrice}}</text>
+            <view class="brokerage_button">立即拼团</view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </scroll-view>
+</view>
