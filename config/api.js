@@ -2,8 +2,11 @@
 // var WxApiRoot = 'http://arge.linde.xin/c/wx/';
 // var argeapi = 'http://arge.linde.xin/c/';
 // 线上
-var WxApiRoot = 'https://laijianshengxian.com/c/wx/';
-var argeapi = 'https://laijianshengxian.com/c/';
+// var WxApiRoot = 'https://laijianshengxian.com/c/wx/';
+// var argeapi = 'https://laijianshengxian.com/c/';
+
+var WxApiRoot = 'https://youjiacang.com/c/wx/';
+var argeapi = 'https://youjiacang.com/c/';
 module.exports = {
   brandList:argeapi +'wx/home/brandList',//门店列表
   getBrandList:argeapi +'api/v1/teamList/getBrandList',//门店拼团列表

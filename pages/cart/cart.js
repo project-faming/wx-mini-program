@@ -236,7 +236,7 @@ Page({
           });
         });
       } else {
-        var productIds = that.data.cartGoods.map(function (v) {
+         productIds = that.data.cartGoods.map(function (v) {
           return v.productId;
         });
       }
