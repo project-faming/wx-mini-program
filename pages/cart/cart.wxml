@@ -20,7 +20,7 @@
       <view class="list" wx:if="{{isMultiOrderModel==1}}">
         <view class="group-item">
           <view class="goods" wx:for="{{brandCartgoods}}" wx:key="brandId" wx:for-item="bitem">
-            <navigator url="../brandDetail/brandDetail?id={{bitem.brandId}}"  class="h">
+            <navigator wx:if="bitem.brandName" url="../brandDetail/brandDetail?id={{bitem.brandId}}"  class="h">
               <view class="l">{{bitem.brandName}} > </view>
             </navigator>
             <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{ bitem.cartList}}" wx:key="id">

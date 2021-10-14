@@ -12,7 +12,7 @@ Page({
   data: {
     load_statue: true,
     shopInfo: {
-      name: '来健生鲜',
+      name: '优加',
       address: 'https://www.shequlianshang.com/dts/index.html',
       latitude: 28.198410,
       longitude: 112.883290,

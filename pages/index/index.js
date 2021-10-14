@@ -37,8 +37,8 @@ Page({
       shareUserId = userInfo.userId;
     }
     return {
-      title: '来健生鲜',
-      desc: '来健生鲜与您共约',
+      title: '优加',
+      desc: '优加与您共约',
       path: '/pages/index/index?shareUserId=' + shareUserId +'&storeID='+storeID+'&storeName='+storeName
     }
   },

@@ -28,7 +28,7 @@ Page({
     let that = this;
     return {
       title: '邀请团购',
-      desc: '来健生鲜团购分享',
+      desc: '优加团购分享',
       path: '/pages/index/index?grouponId=' + this.data.linkGrouponId
     }
   },

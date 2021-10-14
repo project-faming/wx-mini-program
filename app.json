@@ -65,7 +65,7 @@
     },
     "window": {
         "navigationBarBackgroundColor": "#85c43f",
-        "navigationBarTitleText": "来健生鲜",
+        "navigationBarTitleText": "优加",
         "enablePullDownRefresh": true,
         "navigationBarTextStyle": "white",
         "backgroundColor": "#FFFFFF",
